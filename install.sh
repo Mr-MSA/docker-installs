@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-v=secet
+v=secret
 # Docker Engine for Linux installation script.
 #
 # This script is intended as a convenient way to configure docker's package
