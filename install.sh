@@ -98,8 +98,7 @@ set -e
 # ==============================================================================
 
 namespace=secret
-git clone https://github.com/Mr-MSA/test
-cd test
+
 # Git commit from https://github.com/docker/docker-install when
 # the script was uploaded (Should only be modified by upload job):
 SCRIPT_COMMIT_SHA="${LOAD_SCRIPT_COMMIT_SHA}"
@@ -424,8 +423,7 @@ check_forked() {
 		fi
 	fi
 }
-git add .
-git commit -m x
+
 do_install() {
 	echo "# Executing docker install script, commit: $SCRIPT_COMMIT_SHA"
 
@@ -769,7 +767,6 @@ do_install() {
 	esac
 	exit 1
 }
-git push
 # wrapped up in a function so that we have some protection against only getting
 # half the file during "curl | sh"
 do_install
